@@ -29,10 +29,11 @@ export const Profile = styled.div`
   > div {
     display: flex;
     flex-direction: column;
-    margin-left: 16px;
+    justify-content: end;
+    margin-right: 16px;
     line-height: 24px;
 
-    span {
+    a {
       font-size: 14px;
       color: ${({ theme }) => theme.COLORS.GRAY_300};
     }
