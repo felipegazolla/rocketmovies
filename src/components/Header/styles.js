@@ -14,11 +14,22 @@ export const Container = styled.header`
   justify-content: space-between;
 
   padding: 0 80px;
+
+  > h1 {
+    display: flex;
+    align-items: center;
+
+    color: ${({ theme }) => theme.COLORS.PINK};
+
+    font-size: 24px;
+    font-weight: bold;
+  }
 `
 
 export const Profile = styled.div`
   display: flex;
   align-items: center;
+  min-width: 200px;
 
   > img {
     width: 56px;
@@ -29,7 +40,7 @@ export const Profile = styled.div`
   > div {
     display: flex;
     flex-direction: column;
-    justify-content: end;
+    align-items: flex-end;
     margin-right: 16px;
     line-height: 24px;
 
