@@ -2,13 +2,15 @@ import styled from "styled-components"
 
 export const Container = styled.div`
   width: 100%;
+  height: 56px;
   display: flex;
   align-items: center;
+  justify-content: center;
 
   background-color: ${({ theme }) => theme.COLORS.BACKGROUND_800};
   color: ${({ theme }) => theme.COLORS.GRAY_300};
 
-  margin: 5px 64px;
+  margin: 4px 64px;
   border-radius: 10px;
 
   > input {
