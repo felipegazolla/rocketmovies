@@ -10,7 +10,7 @@ export const Container = styled.div`
   background-color: ${({ theme }) => theme.COLORS.BACKGROUND_800};
   color: ${({ theme }) => theme.COLORS.GRAY_300};
 
-  margin: 4px 64px;
+  margin: 4px auto;
   border-radius: 10px;
 
   > input {
@@ -23,7 +23,7 @@ export const Container = styled.div`
     background: transparent;
     border: 0;
 
-    &:placeholder {
+    &::placeholder {
       color: ${({ theme }) => theme.COLORS.GRAY_300};
     }
   }
