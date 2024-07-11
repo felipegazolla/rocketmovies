@@ -11,7 +11,8 @@ export const Container = styled.div`
   "content";
 
   > main {
-    overflow-y: scroll;
+    grid-area: content;
+    overflow-y: auto;
   }
 `
 
@@ -76,6 +77,7 @@ export const Addtags = styled.div`
   min-height: 88px;
   display: flex;
   gap: 24px;
+  flex-wrap: wrap;
 
   padding: 16px;
 

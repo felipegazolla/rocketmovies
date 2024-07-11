@@ -1,4 +1,5 @@
 import styled from "styled-components"
+import { Link } from "react-router-dom"
 
 export const App = styled.div`
   height: 625px;
@@ -20,7 +21,7 @@ export const Content = styled.div`
 
 `
 
-export const AddButton = styled.button`
+export const AddButton = styled(Link)`
   background-color: ${({ theme }) => theme.COLORS.PINK};
   color: ${({ theme }) => theme.COLORS.BLACK};
 

@@ -9,7 +9,7 @@ export function Header() {
       <h1>RocketMovies</h1>
       
       <Input placeholder="Pesquisar pelo título" icon={FiSearch} />
-      <Profile>
+      <Profile to="/profile">
         <div>
           <strong>Felipe Gazolla</strong>
           <a href="/">Sair</a>

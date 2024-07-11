@@ -5,6 +5,7 @@ import { Input } from "../../components/Input"
 import { Textarea } from "../../components/Textarea"
 import { MovieMarker } from "../../components/Moviemarker"
 import { Button } from "../../components/Button"
+import { Link } from "react-router-dom"
 
 export function New() {
   return (
@@ -14,10 +15,10 @@ export function New() {
       <main>
         <Form>
           <header>
-          <a href="/">
+          <Link to="/">
             <FiArrowLeft />
             Voltar
-          </a>
+          </Link>
           <h1>Novo filme</h1>
           </header>
 
