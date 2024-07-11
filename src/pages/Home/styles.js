@@ -17,30 +17,7 @@ export const Container = styled.div`
   `
 
 export const Content = styled.div`
-  max-width: 100%;
 
-  margin: 0 70px;
-  margin-bottom: 24px;
-  padding: 32px;
-  border-radius: 16px;
-  background-color: ${({ theme }) => theme.COLORS.BACKGROUND_700};
-
-
-
-  > h2 {
-    margin-bottom: 10px;
-  }
-
-  > p {
-    margin-top: 15px;
-    margin-bottom: 15px;
-    text-align: justify;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
-  }
 `
 
 export const AddButton = styled.button`
