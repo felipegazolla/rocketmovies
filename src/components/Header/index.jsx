@@ -5,12 +5,19 @@ import { useAuth } from "../../hooks/auth"
 import { api } from "../../services/api"
 import avatarplaceholder from "../../assets/placeholder_img.svg"
 import { useEffect, useState } from "react"
+import { useNavigate } from "react-router"
 
 export function Header() {
   const [search, setSearch] = useState("")
   const [movies, setMovies] = useState([])
 
   const { signOut, user } = useAuth()
+  const navigate = useNavigate()
+
+  function handleSignOut() {
+    navigate("/")
+    signOut()
+  }
 
   const avatarUrl = user.avatar ? `${api.defaults.baseURL}/files/${user.avatar}` : avatarplaceholder
 
@@ -42,7 +49,7 @@ export function Header() {
       </Profile>
           <button 
             type="button" 
-            onClick={signOut} 
+            onClick={handleSignOut} 
           >
             Sair
           </button>
