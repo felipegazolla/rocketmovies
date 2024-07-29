@@ -2,13 +2,13 @@ import styled from "styled-components"
 import { Link } from "react-router-dom"
 
 export const App = styled.div`
-  height: 625px;
+  height: 520px;
   position: absolute;
   overflow-y: auto;
 `
 export const Container = styled.div`
   width: 100%;
-  height: 120px;
+  height: 100px;
   
   display: flex;
   align-items: center;

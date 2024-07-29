@@ -1,8 +1,11 @@
 import { FiSearch } from "react-icons/fi"
 import { Input } from "../Input"
 import { Container, Profile } from "./styles"
+import { useAuth } from "../../hooks/auth"
 
 export function Header() {
+  const { signOut } = useAuth()
+
   return (
     <Container>
 
@@ -12,11 +15,16 @@ export function Header() {
       <Profile to="/profile">
         <div>
           <strong>Felipe Gazolla</strong>
-          <a href="/">Sair</a>
         </div>
 
         <img src="https://github.com/felipegazolla.png" alt="Imagem do usuário" />
       </Profile>
+          <button 
+            type="button" 
+            onClick={signOut} 
+          >
+            Sair
+          </button>
     </Container>
   )
 }
