@@ -13,8 +13,16 @@ export function New() {
   const [newTag, setNewTag] = useState("")
 
   function handleAddTag() {
+    if (newTag.trim() === "") {
+      return alert("Digite a Tag")
+    }
+
     setTags(prevState => [...prevState, newTag])
     setNewTag("")
+  }
+
+  function handleRemoveTag(deleted) {
+    setTags(prevState => prevState.filter(tag => tag !== deleted))
   }
 
   return (
@@ -45,7 +53,7 @@ export function New() {
                 <MovieMarker
                   key={String(index)}
                   value={tag}
-                  onClick={() => { }}
+                  onClick={() => handleRemoveTag(tag)}
                 />
               ))
             }
