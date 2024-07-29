@@ -2,9 +2,13 @@ import { FiSearch } from "react-icons/fi"
 import { Input } from "../Input"
 import { Container, Profile } from "./styles"
 import { useAuth } from "../../hooks/auth"
+import { api } from "../../services/api"
+import avatarplaceholder from "../../assets/placeholder_img.svg"
 
 export function Header() {
-  const { signOut } = useAuth()
+  const { signOut, user } = useAuth()
+
+  const avatarUrl = user.avatar ? `${api.defaults.baseURL}/files/${user.avatar}` : avatarplaceholder
 
   return (
     <Container>
@@ -14,10 +18,10 @@ export function Header() {
       <Input placeholder="Pesquisar pelo título" icon={FiSearch} />
       <Profile to="/profile">
         <div>
-          <strong>Felipe Gazolla</strong>
+          <strong>{user.name}</strong>
         </div>
 
-        <img src="https://github.com/felipegazolla.png" alt="Imagem do usuário" />
+        <img src={avatarUrl} alt={user.name} />
       </Profile>
           <button 
             type="button" 
