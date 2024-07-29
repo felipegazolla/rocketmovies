@@ -17,8 +17,13 @@ export const Container = styled.div`
   padding: 0 70px;
   `
 
-export const Content = styled.div`
-
+export const Content = styled.div` 
+  max-width: 1650px;
+  display: flex;
+  flex-direction: column;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 `
 
 export const AddButton = styled(Link)`
