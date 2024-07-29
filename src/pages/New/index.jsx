@@ -6,8 +6,17 @@ import { Textarea } from "../../components/Textarea"
 import { MovieMarker } from "../../components/Moviemarker"
 import { Button } from "../../components/Button"
 import { Link } from "react-router-dom"
+import { useState } from "react"
 
 export function New() {
+  const [tags, setTags] =useState([])
+  const [newTag, setNewTag] = useState("")
+
+  function handleAddTag() {
+    setTags(prevState => [...prevState, newTag])
+    setNewTag("")
+  }
+
   return (
     <>
     <Container>
@@ -31,8 +40,22 @@ export function New() {
           
           <h2>Marcadores</h2>
           <Addtags>
-            <MovieMarker value="React"/>
-            <MovieMarker placeholder="Novo Marcador" isNew/>
+            {
+              tags.map((tag, index) => (
+                <MovieMarker
+                  key={String(index)}
+                  value={tag}
+                  onClick={() => { }}
+                />
+              ))
+            }
+            <MovieMarker 
+              isNew
+              placeholder="Novo Marcador" 
+              value={newTag}
+              onChange={e => setNewTag(e.target.value)}
+              onClick={handleAddTag}
+            />
           </Addtags>
 
           <Section>
