@@ -1,49 +1,96 @@
 import { Container, Content } from "./styles"
-
 import { Header } from "../../components/Header"
 import { Section } from "../../components/Section"
 import { Tag } from "../../components/Tag"
 import { ButtonText } from "../../components/ButtonText"
-import { FiArrowLeft, FiClock } from "react-icons/fi"
+import { FiArrowLeft, FiClock, FiX } from "react-icons/fi"
 import { Stars } from "../../components/Stars"
+import { useNavigate, useParams } from "react-router"
+import { useEffect, useState } from "react"
+import { api } from "../../services/api"
+import avatarPlaveholder from "../../assets/placeholder_img.svg"
+import { useAuth } from "../../hooks/auth"
 
 export function Details() {
+  const { user } = useAuth()
+
+  const [data, setData] = useState(null)
+
+  const params = useParams()
+
+  const navigate = useNavigate()
+
+  const avatarUrl = user.avatar ? `${api.defaults.baseURL}/files/${user.avatar}` : avatarPlaveholder
+  const [avatar, setAvatar] = useState(avatarUrl)
+
+  function handleBack() {
+    navigate(-1)
+  }
+
+  async function handleRemove() {
+    const confirm = window.confirm("Deseja excluir a nota")
+
+    if(confirm) {
+      await api.delete(`/notes/${params.id}`)
+      navigate(-1)
+    }
+  }
+
+  useEffect(() => {
+    async function fetchMovie() {
+      const response = await api.get(`/notes/${params.id}`)
+      setData(response.data)
+    }
+
+    fetchMovie()
+  }, [])
+
   return (
     <Container>
       <Header />
 
+    {
+      data &&
       <main>
         <Content>
-          <ButtonText icon={FiArrowLeft} title="Voltar" />
-            
+          <div id="buttons">
+            <ButtonText onClick={handleBack} icon={FiArrowLeft} title="Voltar" />
+            <ButtonText id="remove" onClick={handleRemove} icon={FiX} title="Excluir nota" />
+          </div>  
+
             <div id="title">
-              <h1>Interestellar</h1>
-              <Stars rating={4}/>
+              <h1>{data.title}</h1>
+              <Stars rating={data.rating}/>
             </div>
             <div id="description">
 
             <div id="user">
-              <img src="https://github.com/felipegazolla.png" alt="Imagem do usuário" />
-              <p>Por Felipe Gazolla</p>
+              <img src={avatar} alt="Imagem do usuário" />
+              <p>Por {user.name}</p>
             </div>
             <div id="date">
               <FiClock />
-              <p>08/07/24 às 16:20</p>
-            </div>
+              <p>{data.created_at}</p>
             </div>
 
-          <Section>
-            <Tag title="Ficção Científica" />
-            <Tag title="Drama" />
-            <Tag title="Família" />
-          </Section>
+            </div>
 
-          <p>Pragas nas colheitas fizeram a civilização humana regredir para uma sociedade agrária em futuro de data desconhecida. Cooper, ex-piloto da NASA, tem uma fazenda com sua família. Murphy, a filha de dez anos de Cooper, acredita que seu quarto está assombrado por um fantasma que tenta se comunicar com ela. Pai e filha descobrem que o "fantasma" é uma inteligência desconhecida que está enviando mensagens codificadas através de radiação gravitacional, deixando coordenadas em binário que os levam até uma instalação secreta da NASA liderada pelo professor John Brand. O cientista revela que um buraco de minhoca foi aberto perto de Saturno e que ele leva a planetas que podem oferecer condições de sobrevivência para a espécie humana. As "missões Lázaro" enviadas anos antes identificaram três planetas potencialmente habitáveis orbitando o buraco negro Gargântua: Miller, Edmunds e Mann – nomeados em homenagem aos astronautas que os pesquisaram. Brand recruta Cooper para pilotar a nave espacial Endurance e recuperar os dados dos astronautas; se um dos planetas se mostrar habitável, a humanidade irá seguir para ele na instalação da NASA, que é na realidade uma enorme estação espacial. A partida de Cooper devasta Murphy.
-          Além de Cooper, a tripulação da Endurance é formada pela bióloga Amelia, filha de Brand; o cientista Romilly, o físico planetário Doyle, além dos robôs TARS e CASE. Eles entram no buraco de minhoca e se dirigem a Miller, porém descobrem que o planeta possui enorme dilatação gravitacional temporal por estar tão perto de Gargântua: cada hora na superfície equivale a sete anos na Terra. Eles entram em Miller e descobrem que é inóspito já que é coberto por um oceano raso e agitado por ondas enormes. Uma onda atinge a tripulação enquanto Amelia tenta recuperar os dados de Miller, matando Doyle e atrasando a partida. Ao voltarem para a Endurance, Cooper e Amelia descobrem que 23 anos se passaram.
+          {
+            data.tags &&
+              <Section>
+                {
+                  data.tags.map(tag => <Tag title={tag.name} key={tag.id} />)
+                }
+              </Section>
+          }
+          <p>
+          {data.description}
           </p>
 
         </Content>
       </main>
+    }
+    
     </Container>
   )
 }

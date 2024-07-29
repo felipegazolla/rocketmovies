@@ -62,4 +62,13 @@ export const Content = styled.div`
       color: ${({ theme }) => theme.COLORS.WHITE};
     }
   }
+
+  #buttons {
+    display: flex;
+    justify-content: space-between;
+
+    #remove {
+      color: ${({ theme }) => theme.COLORS.GRAY_300};
+    }
+  }
 `
