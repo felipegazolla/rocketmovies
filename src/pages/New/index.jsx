@@ -5,16 +5,24 @@ import { Input } from "../../components/Input"
 import { Textarea } from "../../components/Textarea"
 import { MovieMarker } from "../../components/Moviemarker"
 import { Button } from "../../components/Button"
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import { useState } from "react"
+import { api } from "../../services/api"
 
 export function New() {
-  const [tags, setTags] =useState([])
+  const [title, setTitle] = useState("")
+  const [description, setDescription] = useState("")
+
+  const [rating, setRating] = useState("")
+
+  const [tags, setTags] = useState([])
   const [newTag, setNewTag] = useState("")
+
+  const navigate = useNavigate()
 
   function handleAddTag() {
     if (newTag.trim() === "") {
-      return alert("Digite a Tag")
+      return alert("Digite a Tag para adicionar")
     }
 
     setTags(prevState => [...prevState, newTag])
@@ -23,6 +31,30 @@ export function New() {
 
   function handleRemoveTag(deleted) {
     setTags(prevState => prevState.filter(tag => tag !== deleted))
+  }
+
+  async function handleNewMovie() {
+    if(!title) {
+      return alert("Insira o título do Filme")
+    }
+
+    if(newTag) {
+      return alert("Você esqueceu de adicionar uma Tag")
+    }
+
+    if(rating > 5 || rating < 1) {
+      return alert("Insira a nota entra 1 e 5")
+    }
+
+    await api.post("/notes", {
+      title,
+      description,
+      tags,
+      rating
+    })
+
+    alert("Filme adicionado com sucesso")
+    navigate(-1)
   }
 
   return (
@@ -40,11 +72,21 @@ export function New() {
           </header>
 
           <Section>
-            <Input placeholder="Título" />
-            <Input placeholder="Sua nota (de 0 a 5)" type="number"/>
+            <Input 
+              placeholder="Título" 
+              onChange={e => setTitle(e.target.value)}
+            />
+            <Input 
+              placeholder="Sua nota (de 0 a 5)" 
+              type="number"
+              onChange={e => setRating(e.target.value)}
+            />
           </Section>
           
-          <Textarea placeholder="Observações" />
+          <Textarea 
+            placeholder="Observações" 
+            onChange={e => setDescription(e.target.value)}
+          />
           
           <h2>Marcadores</h2>
           <Addtags>
@@ -68,7 +110,10 @@ export function New() {
 
           <Section>
             <button id="blackbutton">Excluir filme</button>
-            <Button title="Salvar alterações"/>
+            <Button 
+              title="Salvar alterações"
+              onClick={handleNewMovie}
+            />
           </Section>
         </Form>
       </main>
