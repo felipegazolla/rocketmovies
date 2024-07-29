@@ -28,7 +28,7 @@ export function Details() {
   }
 
   async function handleRemove() {
-    const confirm = window.confirm("Deseja excluir a nota")
+    const confirm = window.confirm("Deseja excluir o filme?")
 
     if(confirm) {
       await api.delete(`/notes/${params.id}`)

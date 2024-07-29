@@ -5,9 +5,10 @@ import { Input } from "../../components/Input"
 import { Textarea } from "../../components/Textarea"
 import { MovieMarker } from "../../components/Moviemarker"
 import { Button } from "../../components/Button"
-import { Link, useNavigate } from "react-router-dom"
+import { useNavigate } from "react-router-dom"
 import { useState } from "react"
 import { api } from "../../services/api"
+import { ButtonText } from "../../components/ButtonText"
 
 export function New() {
   const [title, setTitle] = useState("")
@@ -57,6 +58,14 @@ export function New() {
     navigate(-1)
   }
 
+  async function handleRemove() {
+    const confirm = window.confirm("Deseja excluir o filme?")
+
+    if(confirm) {
+      navigate("/")
+    }
+  }
+
   return (
     <>
     <Container>
@@ -64,10 +73,8 @@ export function New() {
       <main>
         <Form>
           <header>
-          <Link to="/">
-            <FiArrowLeft />
-            Voltar
-          </Link>
+          <ButtonText title="Voltar" icon={FiArrowLeft} onClick={handleRemove}>
+          </ButtonText>
           <h1>Novo filme</h1>
           </header>
 
@@ -109,7 +116,12 @@ export function New() {
           </Addtags>
 
           <Section>
-            <button id="blackbutton">Excluir filme</button>
+            <button 
+              id="blackbutton"
+              onClick={handleRemove}
+            >
+              Excluir filme
+            </button>
             <Button 
               title="Salvar alterações"
               onClick={handleNewMovie}

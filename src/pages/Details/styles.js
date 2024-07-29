@@ -23,6 +23,7 @@ export const Content = styled.div`
 
   display: flex;
   flex-direction: column;
+  word-break: break-all;
 
   #description {
     display: flex;
