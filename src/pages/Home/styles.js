@@ -3,6 +3,7 @@ import { Link } from "react-router-dom"
 
 export const App = styled.div`
   height: 70vh;
+  width: 100%;
   position: absolute;
   overflow-y: auto;
 `
@@ -18,7 +19,6 @@ export const Container = styled.div`
   `
 
 export const Content = styled.div` 
-  max-width: 1650px;
   display: flex;
   flex-direction: column;
   white-space: nowrap;
