@@ -34,10 +34,10 @@ export function Header() {
     <Container>
 
       <h1>RocketMovies</h1>
-      
-      <Input 
-        placeholder="Pesquisar pelo título" 
-        icon={FiSearch} 
+
+      <Input
+        placeholder="Pesquisar pelo título"
+        icon={FiSearch}
         onChange={(e) => setSearch(e.target.value)}
       />
       <Profile to="/profile">
@@ -46,13 +46,13 @@ export function Header() {
         </div>
 
         <img src={avatarUrl} alt={user.name} />
+        <button
+          type="button"
+          onClick={handleSignOut}
+        >
+          Sair
+        </button>
       </Profile>
-          <button 
-            type="button" 
-            onClick={handleSignOut} 
-          >
-            Sair
-          </button>
     </Container>
   )
 }
