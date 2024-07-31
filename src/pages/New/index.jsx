@@ -63,6 +63,8 @@ export function New() {
 
     if(confirm) {
       navigate("/")
+    } else {
+      
     }
   }
 
