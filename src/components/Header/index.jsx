@@ -43,15 +43,15 @@ export function Header() {
       <Profile to="/profile">
         <div>
           <strong>{user.name}</strong>
-        </div>
 
+          <button
+            type="button"
+            onClick={handleSignOut}
+          >
+            Sair
+          </button>
+        </div>
         <img src={avatarUrl} alt={user.name} />
-        <button
-          type="button"
-          onClick={handleSignOut}
-        >
-          Sair
-        </button>
       </Profile>
     </Container>
   )
