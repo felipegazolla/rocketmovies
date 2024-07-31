@@ -8,6 +8,7 @@ import { FiSearch } from "react-icons/fi"
 import { useAuth } from "../../hooks/auth"
 import { api } from "../../services/api"
 import { useNavigate } from "react-router"
+import avatarplaceholder from "../../assets/placeholder_img.svg"
 
 export function Home() {
   const [search, setSearch] = useState("")
@@ -46,16 +47,16 @@ export function Home() {
         <Profile to="/profile">
           <div>
             <strong>{user.name}</strong>
+        <button
+          type="button"
+          onClick={signOut}
+          >
+          Sair
+        </button>
           </div>
 
           <img src={avatarUrl} alt={user.name} />
         </Profile>
-        <button
-          type="button"
-          onClick={signOut}
-        >
-          Sair
-        </button>
       </Header>
       <Container>
         <h1>Meus filmes</h1>

@@ -58,16 +58,6 @@ export const Header = styled.header`
 
   padding: 0 80px;
 
-  > button {
-      right: 160px;
-      top: 65px;
-      position: absolute;
-      background: none;
-      border: none;
-      font-size: 14px;
-      color: ${({ theme }) => theme.COLORS.GRAY_300};
-    }
-
   > h1 {
     display: flex;
     align-items: center;
@@ -97,9 +87,18 @@ export const Profile = styled(Link)`
     margin-right: 16px;
     line-height: 24px;
 
+    button {
+  
+        background: none;
+        border: none;
+        font-size: 14px;
+        color: ${({ theme }) => theme.COLORS.GRAY_300};
+      }
+
     strong {
       font-size: 18px;
       color: ${({ theme }) => theme.COLORS.WHITE};
     }
   }
+
 `
