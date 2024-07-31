@@ -64,7 +64,7 @@ export function New() {
     if(confirm) {
       navigate("/")
     } else {
-      
+
     }
   }
 
@@ -118,12 +118,6 @@ export function New() {
           </Addtags>
 
           <Section>
-            <button 
-              id="blackbutton"
-              onClick={handleRemove}
-            >
-              Excluir filme
-            </button>
             <Button 
               title="Salvar alterações"
               onClick={handleNewMovie}
